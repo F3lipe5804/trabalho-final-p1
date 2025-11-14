@@ -58,7 +58,6 @@ class SistemaConsultas:
         finally:
             cursor.close()
 
-
     def autenticar_usuario(self, nome, senha):
         cursor = self.conexao.cursor(dictionary=True)
         sql = "SELECT * FROM usuarios WHERE nome = %s AND senha = %s"
@@ -108,7 +107,8 @@ class SistemaConsultas:
             print("2 - Reagendar consulta")
             print("3 - Marcar consulta como concluída")
             print("4 - Ver todas as consultas")
-            print("5 - Adcionar paciente")
+            print("5 - Cadastrar usuário")
+            print("6 - Alterar nível de usuário")
             print("0 - Sair")
             opc = input("Escolha: ")
 
@@ -126,9 +126,11 @@ class SistemaConsultas:
                 data = input("Data da consulta: ")
                 adm.concluir_consulta(paciente, data, self.conexao)
             elif opc == "4":
-                adm.ver_todas_consultas(self.conexao)
+                adm.ver_agenda(self.conexao)
             elif opc == "5":
                 adm.cadastrar_usuario(self.conexao)
+            elif opc == "6":
+                adm.alterar_nivel_usuario(self.conexao)
             elif opc == "0":
                 break
             else:
